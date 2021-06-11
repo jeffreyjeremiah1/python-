@@ -7,8 +7,7 @@ def bmi_calculation():
     final_bmi = round(BMI, 2)
     bmi_result_label["text"] = f"{final_bmi}"
     # conclusion_print_label["text"] = weight_condition
-    return final_bmi
-
+    weight_condition(final_bmi) # Passed the "BMI value" into the "weight_condition function"
 
 
 def clear_screen():
@@ -17,16 +16,17 @@ def clear_screen():
     bmi_result_label["text"] = " "
 
 
-def weight_condition():
+def weight_condition(BMI):
     # how can i access the final_bmi from the bmi_calculation function to use the value and check this condition
+    # Corrected the "lablel" test part.
     if BMI < 18.5:
-        conclusion_print_label["text"] = "You are underweight"
+        conclusion_print_label.config(text="You are underweight")
     elif BMI < 24.9:
-        conclusion_print_label["text"] = "You have a normal weight"
+        conclusion_print_label.config(text="You have a normal weight")
     elif BMI < 35:
-        conclusion_print_label["text"] = "You are Obese"
+        conclusion_print_label.config(text="You are Obese")
     else:
-        conclusion_print_label["text"] = "You are severely Obese"
+        conclusion_print_label.config(text="You are severely Obese")
 
 
 window = tkinter.Tk()

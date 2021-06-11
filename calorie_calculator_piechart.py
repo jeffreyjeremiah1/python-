@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
+total_calorie = []
+total_protein = []
+total_fat = []
 
 labels = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
 profit = [100, 140, 300, 250, 200]
@@ -43,14 +46,41 @@ def extract_info(event):
 
 
 def add(event):
-    print("add")
+	total_calorie.append(calories(food_entry.get()))
+	total_protein.append(protein(food_entry.get()))
+	total_fat.append(fat(food_entry.get()))
+	#  This is to visualize the appending calories, protein and fats list
+	#  You can remove these 3 lines when they arent needed anymore
+	print(f"calories = {total_calorie}")
+	print(f"protein = {total_protein}")
+	print(f"fat = {total_fat}")
+	
+	total = 0
+	for i in total_calorie:
+		total += i
+		calorie_value.config(text=str(total))  # "str(total)" converts the integer(total) to a string type used for 'text=' input. 
+
+	total = 0  # Clear the value in 'total' before summing protein
+	for i in total_protein:
+		total += i
+		protein_value.config(text=str(total))
+	
+	total = 0  # Clear the value in 'total' before summing fat
+	for i in total_fat:
+		total += i
+		fat_value.config(text=str(total))
 
 
 def clear(event):
-    calorie_value.config(text='')
-    fat_value.config(text='')
-    protein_value.config(text='')
-    conclusion_value.config(text='')
+	calorie_value.config(text='')
+	fat_value.config(text='')
+	protein_value.config(text='')
+	conclusion_value.config(text='')
+
+	#  Clears all the elements in the lists appended in the 'add' function 
+	total_calorie.clear()
+	total_protein.clear()
+	total_fat.clear()
 
 
 def calories(choice):
